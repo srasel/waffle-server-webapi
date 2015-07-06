@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0086)http://docs.gapminderwaffleapi.apiary.io/#reference/query/examples/general-stats-query -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Gapminder Waffle API · Apiary</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="2xk1RgCJ7lGo7pJ826cos7moPjcExpih-yXTxfTJ7KU">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="description" content="A place where APIs are kept.">
+    <meta name="author" content="Apiary">
+    <script src="Scripts/js/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+
+    <!--<link rel="shortcut icon" href="https://apiary.a.ssl.fastly.net/assets/aa8fc5808796304b0bd19c126f30f1d8.ico">-->
+    <!--<link rel="apple-touch-icon-precomposed" href="https://apiary.a.ssl.fastly.net/assets/16cb9301e5cd0912853e806125ed7f5d.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://apiary.a.ssl.fastly.net/assets/88b45e069ad376bdd2619f476d707273.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://apiary.a.ssl.fastly.net/assets/166416e5d92f4c451aad958f272353f2.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://apiary.a.ssl.fastly.net/assets/54504235b83a48b20f8c21554f79872c.png">-->
+
+    <link href="Content/gapminder.css" rel="stylesheet" />
+    <!-- Legacy Bootstrap -->
+    <script type="text/javascript" async="" src="./Gapminder Waffle API · Apiary_files/saved_resource"></script>
+    <script>
+        if (!window.config) {
+            window.config = {};
+        }
+
+        if (!window.apiaryHybridJavaScripts) {
+            window.apiaryHybridJavaScripts = [];
+        }
+  </script>
+    <!-- /Legacy Bootstrap -->
+
+    <script>
+        window.jsLoginUrl = "";
+        window.trafficSecret = "";
+        window.runExampleIframeUrl = "/___APIARY_INTERNAL___/docs/run-button";
+        window.tryItUrl = "";
+        window.mockserverUrl = "";
+        window.loginUri = "";
+        window.baseDomain = "";
+
+        window.config.baseAjaxUrl = "http://docs.gapminderwaffleapi.apiary.io/";
+        window.previewHelpers = window.previewHelpers || {};
+
+
+        window.previewHelpers.apiUrl = window.previewHelpers.mockserverUrl = "";
+
+      </script>
+
+    <!-- Bootstrap -->
+    <script>
+        if (!window.Apiary) {
+            window.Apiary = {};
+        }
+
+        window.Apiary.PAGE = "";
+        window.Apiary.APPLICATION_DATA = { "apiName": "Gapminder Waffle API", "apiSubdomain": "gapminderwaffleapi", "networkInitialCache": "{\"https://jsapi.apiary.io/user\":{\"body\":{},\"rawBody\":\"\",\"headers\":{},\"statusCode\":404},\"https://jsapi.apiary.io/apis/gapminderwaffleapi\":{\"statusCode\":200,\"body\":{\"name\":\"Gapminder Waffle API\",\"subdomain\":\"gapminderwaffleapi\",\"lastUpdated\":\"2015-04-16T10:20:06.651Z\",\"owner\":{\"_id\":\"5429343815324b020000e210\",\"name\":\"Gapminder Developers\"},\"user\":{\"trafficSecret\":\"8bdc3a1ac\",\"isAnonymous\":true},\"urls\":{\"mock\":\"https://private-anon-8bdc3a1ac-gapminderwaffleapi.apiary-mock.com/\",\"production\":\"https://waffle.gapminder.org/\",\"proxy\":\"https://private-anon-8bdc3a1ac-gapminderwaffleapi.apiary-proxy.com/\"},\"preferences\":{\"privateTraffic\":true,\"documentation\":{}},\"userRights\":{\"actAsApiOwner\":false,\"editBlueprint\":false,\"manageTeam\":false},\"editors\":[{},{},{}],\"blueprint\":\"\",\"description\":\"\\u003Cp\\u003EThe Waffle Server is a Mongo DB serving data to the VIzabi on Gapminder\u2019s go page.\\nIt implements the Waffle API.\\u003C/p\\u003E\\n\\n\\u003Ch2\\u003EGeneral query format\\u003C/h2\\u003E\\n\\n\\u003Cp\\u003EQueries should be made using the following JSON format. Each call to the API may contain one or more subqueries, each made up of SELECT, WHERE, and FROM, described further below.\\u003C/p\\u003E\\n\\n\\u003Cpre\\u003E\\u003Ccode\\u003E{\\n    &quot;query&quot;: [\\n    {   // Query 1\\n        &quot;SELECT&quot;: [...],\\n        &quot;WHERE&quot;: {...},\\n        &quot;FROM&quot;: &quot;...&quot;\\n        &quot;VERSION: &quot;...&quot; // Note: This key is optional\\n    },\\n    {...}, // Query 2\\n    ...    // Additional queries...\\n    ],\\n    &quot;lang&quot;: &quot;en&quot;\\n}\\n\\u003C/code\\u003E\\u003C/pre\\u003E\\n\\n\\u003Ch3\\u003ESELECT\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EThe fields that should be contained in the response. E.g. \\u003Ccode\\u003E[&quot;geo&quot;, &quot;time&quot;, &quot;pop&quot;]\\u003C/code\\u003E would return those three fields where applicable. A special value of \\u003Ccode\\u003E[&quot;*&quot;]\\u003C/code\\u003E can be used to return all available fields. One can also use, for instance \\u003Ccode\\u003E[&quot;geo.name&quot;]\\u003C/code\\u003E to obtain attributes from the corresponding entity definition. \\u003C/p\\u003E\\n\\n\\u003Ch3\\u003EWHERE\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EConditions on the data to be returned. In it&quot;s most basic format, one can filter for equivalence on an attribute: \\u003Ccode\\u003E{&quot;geo&quot;:&quot;swe&quot;}\\u003C/code\\u003E. To simply check for existence, \\u003Ccode\\u003E{&quot;geo&quot;:&quot;*&quot;}\\u003C/code\\u003E can be used. To allow multiple options, an array can be provided: \\u003Ccode\\u003E{&quot;geo&quot;:[&quot;swe&quot;, &quot;nor&quot;]}\\u003C/code\\u003E. For numerical attributes, a range can instead be provided: \\u003Ccode\\u003E{&quot;time&quot;:&quot;1900-2000&quot;}\\u003C/code\\u003E.\\u003C/p\\u003E\\n\\n\\u003Cp\\u003EMost MongoDB query syntax options should also be available, such as \\u003Ca href=\\\"http://docs.mongodb.org/manual/reference/operator/query/and/\\\"\\u003E$and\\u003C/a\\u003E queries.\\u003C/p\\u003E\\n\\n\\u003Ch3\\u003EFROM\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EDetermines which dataset the data should be pulled from. Note that the exact subset of data (i.e. entities or stats or ...) the query pulls from is determined by the contents of the SELECT and WHERE parts of the query, see below for examples.\\u003C/p\\u003E\\n\\n\\u003Ch3\\u003EVERSION\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EVersion is an optinal key, which is used for requsting a spefic version of the dataset. The version is often timestamp format, but it is not a requirement.\\u003C/p\\u003E\\n\\n\\u003Cp\\u003EIf no version is defined in the query, the server will use the default version that is set for the requested waffle\\u003C/p\\u003E\\n\\n\\u003Cp\\u003EExample of how a version string can look like:\\u003C/p\\u003E\\n\\n\\u003Cpre\\u003E\\u003Ccode\\u003E&quot;VERSION&quot;: &quot;2015-01-19T10:57:34.347Z&quot;\\n\\u003C/code\\u003E\\u003C/pre\\u003E\\n\\n\\u003Ch3\\u003EResponse\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EThe response will be given on the following format, with an array containing another array for each subquery. Each subquery response will consist of some number of simple JSON objects, based on the query.\\u003C/p\\u003E\\n\\n\\u003Cpre\\u003E\\u003Ccode\\u003E[\\n    [  // Response 1\\n        {...}, ...\\n    ],\\n    [...], // Response 2\\n    ...    // Additional responses\\n]\\n\\u003C/code\\u003E\\u003C/pre\\u003E\\n\\n\\u003Ch2\\u003EKey query format\\u003C/h2\\u003E\\n\\n\\u003Cp\\u003ETODO\\u003C/p\\u003E\\n\\n\\u003Ch2\\u003EError handling\\u003C/h2\\u003E\\n\\n\\u003Cp\\u003EWhen possible the server will try to give feedback on what went wrong.\\u003C/p\\u003E\\n\\n\\u003Ch3\\u003EError response format\\u003C/h3\\u003E\\n\\n\\u003Cp\\u003EThe error will be following format:\\u003C/p\\u003E\\n\\n\\u003Cpre\\u003E\\u003Ccode\\u003E{ &quot;error&quot;: &quot;Error message will be here&quot;}\\n\\u003C/code\\u003E\\u003C/pre\\u003E\",\"toc\":{\"introduction\":{\"items\":[{\"level\":2,\"name\":\"General query format\",\"subitems\":[{\"level\":3,\"name\":\"SELECT\"},{\"level\":3,\"name\":\"WHERE\"},{\"level\":3,\"name\":\"FROM\"},{\"level\":3,\"name\":\"VERSION\"},{\"level\":3,\"name\":\"Response\"}]},{\"level\":2,\"name\":\"Key query format\",\"subitems\":[]},{\"level\":2,\"name\":\"Error handling\",\"subitems\":[{\"level\":3,\"name\":\"Error response format\"}]}],\"lowestLevel\":2,\"secondLowestLevel\":3}},\"resourceGroups\":[{\"name\":\"Query\",\"description\":\"\\u003Cp\\u003EThis endpoint is used for stats queries.\\u003C/p\\u003E\\n\\n\\u003Cp\\u003E(Most of these queries, or variants of them, can be found in \\u003Ca href=\\\"https://github.com/Gapminder/waffle-server/blob/master/tests/jsonexport.py\\\"\\u003Etests/jsonexport.py\\u003C/a\\u003E.)\\u003C/p\\u003E\",\"resources\":[{\"name\":\"Examples\",\"description\":\"\",\"model\":{},\"headers\":{},\"uriTemplate\":\"/api/v1/query\",\"actions\":[{\"name\":\"General stats query\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n          \\\"SELECT\\\": [\\\"geo\\\", \\\"geo.name\\\", \\\"time\\\", \\\"pop\\\"],\\n          \\\"WHERE\\\": {\\\"geo\\\": [\\\"swe\\\", \\\"nor\\\"], \\\"time\\\":\\\"2014-2015\\\"},\\n          \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n  [\\n    {\\n      \\\"time\\\": \\\"2014\\\",\\n      \\\"geo\\\": \\\"nor\\\",\\n      \\\"pop\\\": \\\"5022555\\\",\\n      \\\"geo.name\\\": \\\"Norway\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2015\\\",\\n      \\\"geo\\\": \\\"nor\\\",\\n      \\\"pop\\\": \\\"5054478\\\",\\n      \\\"geo.name\\\": \\\"Norway\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2014\\\",\\n      \\\"geo\\\": \\\"swe\\\",\\n      \\\"pop\\\": \\\"9595619\\\",\\n      \\\"geo.name\\\": \\\"Sweden\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2015\\\",\\n      \\\"geo\\\": \\\"swe\\\",\\n      \\\"pop\\\": \\\"9647359\\\",\\n      \\\"geo.name\\\": \\\"Sweden\\\"\\n    }\\n  ]\\n]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"General stats query on specific version\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n          \\\"SELECT\\\": [\\\"geo\\\", \\\"geo.name\\\", \\\"time\\\", \\\"pop\\\"],\\n          \\\"WHERE\\\": {\\\"geo\\\": [\\\"swe\\\", \\\"nor\\\"], \\\"time\\\":\\\"2014-2015\\\"},\\n          \\\"FROM\\\": \\\"humnum\\\",\\n          \\\"VERSION\\\": \\\"2015-01-19T09:40:40.516Z\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n  [\\n    {\\n      \\\"time\\\": \\\"2014\\\",\\n      \\\"geo\\\": \\\"nor\\\",\\n      \\\"pop\\\": \\\"5022555\\\",\\n      \\\"geo.name\\\": \\\"Norway\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2015\\\",\\n      \\\"geo\\\": \\\"nor\\\",\\n      \\\"pop\\\": \\\"5054478\\\",\\n      \\\"geo.name\\\": \\\"Norway\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2014\\\",\\n      \\\"geo\\\": \\\"swe\\\",\\n      \\\"pop\\\": \\\"9595619\\\",\\n      \\\"geo.name\\\": \\\"Sweden\\\"\\n    },\\n    {\\n      \\\"time\\\": \\\"2015\\\",\\n      \\\"geo\\\": \\\"swe\\\",\\n      \\\"pop\\\": \\\"9647359\\\",\\n      \\\"geo.name\\\": \\\"Sweden\\\"\\n    }\\n  ]\\n]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Query for all available dimension info\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"dimension\\\": [\\\"*\\\"]},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n  [\\n    {\\n      \\\"-t-id\\\": \\\"geo\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\",\\n      \\\"-t-kind\\\": \\\"dim\\\",\\n      \\\"-t-name\\\": \\\"Geography\\\",\\n      \\\"-t-scale\\\": \\\"ENTITIES\\\",\\n      \\\"-t-types\\\": \\\"{lat:{quant:Lat}, long:{Long} }\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"time\\\",\\n      \\\"-t-dim\\\": \\\"time\\\",\\n      \\\"-t-kind\\\": \\\"dim\\\",\\n      \\\"-t-name\\\": \\\"Time\\\",\\n      \\\"-t-scale\\\": \\\"TIME\\\",\\n      \\\"-t-types\\\": \\\"[DateTime]\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"age\\\",\\n      \\\"-t-dim\\\": \\\"age\\\",\\n      \\\"-t-kind\\\": \\\"dim\\\",\\n      \\\"-t-name\\\": \\\"Age\\\",\\n      \\\"-t-scale\\\": \\\"ORDINAL\\\",\\n      \\\"-t-types\\\": \\\"[ ]\\\"\\n    }\\n  ]\\n] \",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Query for categories of type geo\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"-t-id\\\", \\\"-t-dim\\\"],\\n        \\\"WHERE\\\": {\\\"category\\\": [\\\"*\\\"], \\\"-t-dim\\\":\\\"geo\\\"},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n  [\\n    {\\n      \\\"-t-id\\\": \\\"planet\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"region\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"un_state\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"country\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\"\\n    },\\n    {\\n      \\\"-t-id\\\": \\\"swedish_kommuner\\\",\\n      \\\"-t-dim\\\": \\\"geo\\\"\\n    }\\n  ]\\n] \",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Query for entities of type geo\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\\u003Cp\\u003EWhenever a query only mentions a single dimension, it&quot;s considered an entity query.\\u003C/p\\u003E\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"geo\\\": [\\\"*\\\"]},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\\"missing\\\"]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Query for geo entities belonging to the category region\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"geo\\\": [\\\"*\\\"], \\\"cat\\\":\\\"region\\\"},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\\"missing\\\"]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Query for info on a specific quantity\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"quantity\\\": [\\\"case_cumulative\\\"]},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\\"missing\\\"]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Get all quantaties\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"quantity\\\": [\\\"*\\\"]},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n  [\\n    {\\n      \\\"-t-ind\\\": \\\"case_cumulative\\\",\\n      \\\"-t-name\\\": \\\"Cases cumulative\\\",\\n      \\\"-t-types\\\": \\\"{count:CUMULATIVE}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"cases_incidence_week\\\",\\n      \\\"-t-name\\\": \\\"Cases incidence week\\\",\\n      \\\"-t-types\\\": \\\"{count:INCIDENCE,time:Week}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"deaths_cumulative\\\",\\n      \\\"-t-name\\\": \\\"Deaths cumulative\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"deaths_incidence_week\\\",\\n      \\\"-t-name\\\": \\\"Deaths incidence week\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"poverty_rate\\\",\\n      \\\"-t-name\\\": \\\"Poverty rate\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"pop\\\",\\n      \\\"-t-name\\\": \\\"Population\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"gdp_per_cap\\\",\\n      \\\"-t-name\\\": \\\"Gross National Product per Capita\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"gdp\\\",\\n      \\\"-t-name\\\": \\\"Gross National Product\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"lex\\\",\\n      \\\"-t-name\\\": \\\"Life Expectancy at birth\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"lat\\\",\\n      \\\"-t-name\\\": \\\"Latitude\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    },\\n    {\\n      \\\"-t-ind\\\": \\\"long\\\",\\n      \\\"-t-name\\\": \\\"Longitude\\\",\\n      \\\"-t-types\\\": \\\"{}\\\"\\n    }\\n  ]\\n]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Get all stats where geo categories is country\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"query\\\": [{\\n        \\\"SELECT\\\": [\\\"*\\\"],\\n        \\\"WHERE\\\": {\\\"geo\\\": \\\"*\\\", \\\"geo.cat\\\": [\\\"country\\\"]},\\n        \\\"FROM\\\": \\\"humnum\\\"\\n    }],\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\\"missing\\\"]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]}]}]},{\"name\":\"Query keys\",\"description\":\"\\u003Cp\\u003EThis enpoint is for fetching keys(meta data about the stat data)\\u003C/p\\u003E\",\"resources\":[{\"name\":\"Examples\",\"description\":\"\",\"model\":{},\"headers\":{},\"uriTemplate\":\"/api/v1/query/keys\",\"actions\":[{\"name\":\"Get all key combinations\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"SELECT\\\": \\\"*\\\",\\n    \\\"FROM\\\": \\\"humnum\\\",\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n    \\\"geo_time\\\"\\n]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]},{\"name\":\"Get all key combinations with geo in them\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"POST\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"{\\n    \\\"SELECT\\\": \\\"geo\\\",\\n    \\\"FROM\\\": \\\"humnum\\\",\\n    \\\"lang\\\": \\\"en\\\"\\n}\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"name\":\"\"}],\"responses\":[{\"body\":\"[\\n    \\\"geo_time\\\"\\n]\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]}]}]},{\"name\":\"Other usefull api endpoints\",\"description\":\"\\u003Cp\\u003EHere is some other endpoints that might be usefull.\\u003C/p\\u003E\",\"resources\":[{\"name\":\"Waffle meta data\",\"description\":\"\\u003Cp\\u003EGet all waffles on the server with all of their available versions\\u003C/p\\u003E\",\"model\":{},\"headers\":{},\"uriTemplate\":\"/api/v1/waffle\",\"actions\":[{\"name\":\"List all waffles on the server\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"GET\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"\",\"schema\":\"\",\"description\":\"\",\"headers\":{},\"name\":\"\"}],\"responses\":[{\"body\":\"No response added due to its dynamic content\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]}]},{\"name\":\"Specific waffle meta data\",\"description\":\"\\u003Cp\\u003EGet all data for a specific waffle and its version\\u003C/p\\u003E\",\"model\":{},\"headers\":{},\"parameters\":[{\"key\":\"waffleName\",\"values\":[],\"example\":\"humnum\",\"default\":\"\",\"required\":true,\"type\":\"string\",\"description\":\"\\u003Cp\\u003EName of the waffle\\u003C/p\\u003E\\n\"},{\"key\":\"waffleVersion\",\"values\":[],\"example\":\"2015-03-11T10:54:45.944Z\",\"default\":\"\",\"required\":true,\"type\":\"string\",\"description\":\"\\u003Cp\\u003EVersion number for the waffle\\u003C/p\\u003E\\n\"}],\"uriTemplate\":\"/api/v1/waffle/{waffleName}/{waffleVersion}\",\"actions\":[{\"name\":\"List all waffles on the server\",\"relation\":\"\",\"uriTemplate\":\"\",\"description\":\"\",\"method\":\"GET\",\"headers\":{},\"examples\":[{\"name\":\"\",\"description\":\"\",\"requests\":[{\"body\":\"\",\"schema\":\"\",\"description\":\"\",\"headers\":{},\"name\":\"\"}],\"responses\":[{\"body\":\"\\\"No response added due to its dynamic content\\\"\",\"schema\":\"\",\"description\":\"\",\"headers\":{\"Content-Type\":\"application/json\"},\"status\":\"200\"}]}]}]}]}]},\"rawBody\":\"\",\"headers\":{}}}", "applicationName": "docs", "features": { "3ColumnDocumentation": true }, "circleCi": null, "domain": "apiary.io", "embedded": false, "isPreview": false, "environment": "production", "logLevel": "error", "port": "42988", "ssl": null, "sslPort": null, "staticHostPath": "https://apiary.a.ssl.fastly.net/assets", "staticMap": null, "titleSeparator": "\u00B7", "isAnonymousApi": false, "tracking": { "sentry": { "frontend": { "publicApiKey": "a43b418987a849c9bb8ed7833f7105d9", "projectId": "11810" }, "embed": { "publicApiKey": "b4fb7c164aee4bfb8491c0109a6fcb67", "projectId": "12366" } }, "intercom": { "url": "https://static.intercomcdn.com/intercom.v1.js", "appId": "8dy7eohb" }, "googleAnalytics": { "trackerName": "ApiaryTracker", "trackingId": "18252923-1", "url": "//www.google-analytics.com/analytics.js" } }, "stripe": { "publicApiKey": "pk_live_7zX4IiC2CK9rwdTwfm9vhicS" } };
+  </script>
+    <!-- /Bootstrap -->
+
+    <script src="./Gapminder Waffle API · Apiary_files/common-186a14ac27cc6bae7625.js"></script>
+    <script src="./Gapminder Waffle API · Apiary_files/docs-186a14ac27cc6bae7625.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="./Gapminder Waffle API · Apiary_files/0-0-186a14ac27cc6bae7625.js"></script>
+    <!-- Legacy -->
+    <!-- /Legacy -->
+
+    <script type="text/javascript" charset="utf-8" async="" src="./Gapminder Waffle API · Apiary_files/19-19-186a14ac27cc6bae7625.js"></script>
+
+    <script>
+        $(function () {
+            //$("#includedContent").load("statsPartialView.html");
+        });
+
+        function loadStats() {
+            $("#includedContent").load("statsPartialView.html");
+        }
+        function loadDimension() {
+            $("#includedContent").load("dimensionPartialView.html");
+        }
+        function loadQuantity() {
+            $("#includedContent").load("quantityPartialView.html");
+        }
+    </script>
+
+</head>
+<body id="application" class="appBody themeDark extraLargeWindow" style="width: 1280px; height: 585px;">
+    <div style="width: 100%; overflow: hidden">
+
+        <div style="width: 400px; float: left;">
+
+            <div class="humanColumnApiDescription markdown formalTheme">
+                <p>
+                    Following is the instruction to use the API
+                </p>
+
+                <h2>General query format</h2>
+
+                <p>Queries should be made using the following JSON format. Each call to the API may contain one or more subqueries, each made up of SELECT, WHERE, and FROM, described further below.</p>
+
+                <pre><code>{
+    "query": [
+    {   // Query 1
+        "SELECT": [...],
+        "WHERE": {...},
+        "FROM": "..."
+        "VERSION: "..." // Note: This key is optional
+    },
+    {...}, // Query 2
+    ...    // Additional queries...
+    ],
+    "lang": "en"
+}
+</code></pre>
+
+                <h3>SELECT</h3>
+
+                <p>The fields that should be contained in the response. E.g. <code>["geo", "time", "pop"]</code> would return those three fields where applicable. A special value of <code>["*"]</code> can be used to return all available fields. One can also use, for instance <code>["geo.name"]</code> to obtain attributes from the corresponding entity definition. </p>
+
+                <h3>WHERE</h3>
+
+                <p>Conditions on the data to be returned. In it"s most basic format, one can filter for equivalence on an attribute: <code>{"geo":"swe"}</code>. To simply check for existence, <code>{"geo":"*"}</code> can be used. To allow multiple options, an array can be provided: <code>{"geo":["swe", "nor"]}</code>. For numerical attributes, a range can instead be provided: <code>{"time":"1900-2000"}</code>.</p>
+
+                <p>Most MongoDB query syntax options should also be available, such as <a href="http://docs.mongodb.org/manual/reference/operator/query/and/">$and</a> queries.</p>
+
+                <h3>FROM</h3>
+
+                <p>Determines which dataset the data should be pulled from. Note that the exact subset of data (i.e. entities or stats or ...) the query pulls from is determined by the contents of the SELECT and WHERE parts of the query, see below for examples.</p>
+
+                <h3>VERSION</h3>
+
+                <p>Version is an optinal key, which is used for requsting a spefic version of the dataset. The version is often timestamp format, but it is not a requirement.</p>
+
+                <p>If no version is defined in the query, the server will use the default version that is set for the requested waffle</p>
+
+                <p>Example of how a version string can look like:</p>
+
+                <pre><code>"VERSION": "2015-01-19T10:57:34.347Z"
+</code></pre>
+
+                <h3>Response</h3>
+
+                <p>The response will be given on the following format, with an array containing another array for each subquery. Each subquery response will consist of some number of simple JSON objects, based on the query.</p>
+
+                <pre><code>[
+    [  // Response 1
+        {...}, ...
+    ],
+    [...], // Response 2
+    ...    // Additional responses
+]
+</code></pre>
+            </div>
+
+        </div>
+
+        <div style="width: 150px; float: left;">
+            <ul class="tocColumnSubitems">
+                <li class="tocColumnSubitem noSelect">
+                    <a class="tocColumnSubitemText" onclick="loadDimension()" href="#">DIMENSION Query  </a>
+                </li>
+                <li class="tocColumnSubitem noSelect">
+                    <a class="tocColumnSubitemText" onclick="loadQuantity()" href="#">QUANTITY Query  </a>
+                </li>
+                <li class="tocColumnSubitem noSelect">
+                    <a class="tocColumnSubitemText" onclick="loadStats()" href="#">STATS Query  </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div style="margin-left: 551px;">
+            <div id="includedContent"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product App</title>
+    <link href="Content/pivot.css" rel="stylesheet" />
+    <link href="Content/pivot.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+<body>
+    <div style="border: 1px solid #808080; position: fixed; top: 0px">
+        <table>
+            <tr>
+                <td>
+                    <select name="productId" id="productId">
+                    </select>
+                </td>
+                <td>Start:
+                    <input type="text" name="startDate" id="startDate" />
+                </td>
+                <td>End:
+                    <input type="text" name="endDate" id="endDate" size="10" />
+                </td>
+                <td>
+                    <input type="submit" value="Search" onclick="find()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="border: 1px solid #808080; position: fixed; top: 30px">
+        <table>
+            <tr>
+                <td>
+                    <select name="productIdWDI" id="productIdWDI">
+                    </select>
+                </td>
+                <td>Start:
+                    <input type="text" name="startDateWDI" id="startDateWDI" />
+                </td>
+                <td>End:
+                    <input type="text" name="endDateWDI" id="endDateWDI" size="10" />
+                </td>
+                <td>
+                    <input type="submit" value="Search" onclick="findWDI()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="border: 1px solid #808080; position: fixed; top: 60px">
+        <table>
+            <tr>
+                <td>
+                    <select name="productIdSub" id="productIdSub">
+                    </select>
+                </td>
+                <td>Start:
+                    <input type="text" name="startDateSub" id="startDateSub" />
+                </td>
+                <td>End:
+                    <input type="text" name="endDateSub" id="endDateSub" size="10" />
+                </td>
+                <td>
+                    <input type="submit" value="Search" onclick="findSub()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <div style="width: 90%; height: 85%; border: 1px solid; position: fixed; float: left; top: 90px; overflow: scroll">
+        <p id="product" />
+    </div>
+
+
+    <!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>-->
+    <script src="Scripts/js/jquery.min.js"></script>
+    <script src="Scripts/js/jquery-ui.min.js"></script>
+    <script src="Scripts/js/pivot.js"></script>
+    <script src="Scripts/js/c3_renderers.js"></script>
+    <script src="Scripts/js/d3_renderers.js"></script>
+    <script src="Scripts/js/gchart_renderers.js"></script>
+    <script>
+        google.load("visualization", "1", { packages: ["corechart", "charteditor"] });
+
+        var uri = 'values';
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri + '/indicators')
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<option>', { value: item.ID }).html(item.indicator).appendTo($('#productId'));
+                    });
+                });
+
+            $.getJSON(uri + '/indicatorswdi')
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<option>', { value: item.ID }).html(item.indicator).appendTo($('#productIdWDI'));
+                    });
+                });
+
+            $.getJSON(uri + '/indicatorssub')
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<option>', { value: item.ID }).html(item.indicator).appendTo($('#productIdSub'));
+                    });
+                });
+
+        });
+
+        function formatItem(item) {
+            return item.Name + ': $' + item.Price;
+        }
+
+        function populateData(obj) {
+            $.getJSON(uri + '/details', obj)
+                .done(function (data) {
+                    var derivers = $.pivotUtilities.derivers;
+                    var renderers = $.extend(
+                        $.pivotUtilities.renderers,
+                        $.pivotUtilities.gchart_renderers
+                    );
+                    $("#product").pivotUI(
+                        //[
+                        //    { "color": "blue", "shape": "circle" },
+                        //    { "color": "red", "shape": "triangle" }
+                        //],
+                        data,
+                        {
+                            rows: [],
+                            cols: []
+                        }
+                    );
+
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#product').text('Error: ' + err);
+                });
+        }
+
+        function findSub() {
+            var id = $('#productIdSub').val();
+            var obj = {
+                type: 3,
+                productId: id,
+                startDate: $('#startDateSub').val(),
+                endDate: $('#endDateSub').val()
+            };
+            populateData(obj);
+        }
+
+        function findWDI() {
+            var id = $('#productIdWDI').val();
+            var obj = {
+                type:2,
+                productId: id,
+                startDate: $('#startDateWDI').val(),
+                endDate: $('#endDateWDI').val()
+            };
+            populateData(obj);
+        }
+
+        function find() {
+            var id = $('#productId').val();
+            var obj = {
+                type:1,
+                productId: id,
+                startDate: $('#startDate').val(),
+                endDate: $('#endDate').val()
+            };
+            populateData(obj);
+        }
+    </script>
+</body>
+</html>

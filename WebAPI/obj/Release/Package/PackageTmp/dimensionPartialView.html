@@ -1,0 +1,96 @@
+﻿<div id="statsdiv">
+    <div class="request">
+        <div class="languageExample">
+            <div class="rawExample darkTheme" style="background-color: black;">
+                <!-- Headers -->
+                <ul class="rawExampleSection rawExampleHeaders">
+                    <li class="rawExampleHeader">
+                        <span class="rawExampleHeaderKey">Content-Type</span><span class="rawExampleHeaderSeparator">:</span>
+                        <span class="rawExampleHeaderValue">application/json</span>
+                    </li>
+                </ul>
+                <!-- /Headers -->
+
+                <!-- Body -->
+                <pre class="rawExampleSection rawExampleBody code darkTheme"><span class="line"><span class="token punctuation">{</span></span>
+<span class="line">  <span class="token string oneLine">"query"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></span>
+<span class="line">    <span class="token punctuation">{</span></span>
+<span class="line">      <span class="token string oneLine">"SELECT"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></span>
+<span class="line">        <span class="token string oneLine">"*"</span></span>
+<span class="line">      <span class="token punctuation">]</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"WHERE"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token string oneLine">"dimension"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></span>
+<span class="line">          <span class="token string oneLine">"*"</span></span>
+<span class="line">        <span class="token punctuation">]</span></span>
+<span class="line">      <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"FROM"</span><span class="token punctuation">:</span> <span class="token string oneLine">"spreedsheet"</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token punctuation">]</span><span class="token punctuation">,</span></span>
+<span class="line">  <span class="token string oneLine">"lang"</span><span class="token punctuation">:</span> <span class="token string oneLine">"en"</span></span>
+<span class="line"><span class="token punctuation">}</span></span>    </pre>
+                <!-- /Body -->
+
+            </div>
+        </div>
+    </div>
+    <div class="machineColumnResponse" style="background-color: black;">
+
+        <!-- Title -->
+        <div class="row machineColumnTitle">
+            <h3 class="row machineColumnTitleText">Response</h3>
+        </div>
+        <!-- /Title -->
+
+        <!-- Content -->
+        <div class="machineColumnResponseContent">
+
+
+            <div class="response">
+                <!-- StatusCode -->
+                <div class="responseStatusCode">
+                    200 
+                </div>
+                <!-- /StatusCode -->
+                <div class="languageExample">
+                    <div class="rawExample darkTheme">
+
+                        <!-- Headers -->
+                        <ul class="rawExampleSection rawExampleHeaders">
+                            <li class="rawExampleHeader">
+                                <span class="rawExampleHeaderKey">Content-Type</span><span class="rawExampleHeaderSeparator">:</span>
+                                <span class="rawExampleHeaderValue">application/json</span>
+                            </li>
+                        </ul>
+                        <!-- /Headers -->
+
+                        <!-- Body -->
+                        <pre class="rawExampleSection rawExampleBody code darkTheme"><span class="line"></span>
+<span class="line">  <span class="token punctuation">[</span></span>
+<span class="line">    <span class="token punctuation">{</span></span>
+<span class="line">      <span class="token string oneLine">"-t-id"</span><span class="token punctuation">:</span> <span class="token string oneLine">"geo"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-dim"</span><span class="token punctuation">:</span> <span class="token string oneLine">"geo"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-kind"</span><span class="token punctuation">:</span> <span class="token string oneLine">"dim"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-name"</span><span class="token punctuation">:</span> <span class="token string oneLine">"Geography"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-scale"</span><span class="token punctuation">:</span> <span class="token string oneLine">"GEOGRAPHY"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-types"</span><span class="token punctuation">:</span> <span class="token string oneLine">"DimCountry"</span></span>
+<span class="line">    <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="line">    <span class="token punctuation">{</span></span>
+<span class="line">      <span class="token string oneLine">"-t-id"</span><span class="token punctuation">:</span> <span class="token string oneLine">"time"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-dim"</span><span class="token punctuation">:</span> <span class="token string oneLine">"time"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-kind"</span><span class="token punctuation">:</span> <span class="token string oneLine">"dim"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-name"</span><span class="token punctuation">:</span> <span class="token string oneLine">"Time"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-scale"</span><span class="token punctuation">:</span> <span class="token string oneLine">"TIME"</span><span class="token punctuation">,</span></span>
+<span class="line">      <span class="token string oneLine">"-t-types"</span><span class="token punctuation">:</span> <span class="token string oneLine">"DimTime"</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">  <span class="token punctuation">]</span></span>
+<span class="line"></span>    </pre>
+                        <!-- /Body -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+
+    </div>
+</div>
